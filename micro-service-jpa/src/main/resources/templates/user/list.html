@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>SpringBoot SSH测试</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+	<style type="text/css">
+	.jf-table{margin-top: 15px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>用户列表展示</h1>
+		<div class="pull-right">
+			<a class="btn btn-success" href="/user/add">添加</a>
+		</div>
+		<div class="clearfix"></div>
+		<table class="table table-bordered table-striped table-hover jf-table"> 
+		    <tr>
+		        <th>姓名</th>
+		        <th>密码</th>
+		        <th>昵称</th>
+		        <th>操作</th>
+		    </tr>
+			<tr data-th-each="user : ${userList}">
+				<td data-th-text="${user.username}">...</td>
+	    		<td data-th-text="${user.password}">...</td>
+	    		<td data-th-text="${user.nickname}">...</td>
+	    		<td>
+	    			<a href="detail" th:href="@{/user/detail(uId=${user.uId})}">详细</a> | 
+	    			<a href="update" th:href="@{/user/update(uId=${user.uId})}">修改</a> | 
+	    			<a href="javascript: void(0)" th:onclick="'javascript:remove(\''+${user.uId}+'\')'">删除</a>
+	    		</td> 
+	    	</tr>
+		</table>
+	</div>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/layer.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript">
+	var remove = function(id){
+		if(id == null || id == ""){
+			layer.alert("请选择需要删除的数据",{icon:2});
+			return;
+		}
+		var index = layer.confirm('确定要删除数据？', {
+		  	btn: ['是','否']
+		}, function(){
+			$.ajax({
+				type: "post",
+				url: siteUrl + "user/remove",
+				data: {
+					uId: id
+				},dataType: "json",
+				success: function(res){
+					if(res.success){
+						window.location.href = siteUrl + "user/list";
+					}else{
+						layer.alert(res.msg);
+					}
+				}
+			});
+		}, function(){
+		  	layer.close(index);
+		});	
+	};
+	</script>
+</body>
+</html>

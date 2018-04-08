@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xiudoua.study</groupId>
+	<artifactId>micro</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>micro</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- JustFresh 2018-04-04 Spring Boot 版本整体依赖 Begin -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+		<relativePath/>
+	</parent>
+	<!-- JustFresh 2018-04-04 Spring Boot 版本整体依赖 End -->
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<modules>
+		<module>micro-eureka</module>
+		<module>micro-serviceAdd</module>
+    <module>micro-service-multipl</module>
+    <module>micro-service-feign</module>
+    <module>micro-service-feign-hystrix</module>
+    <module>micro-service-zuul</module>
+    <module>micro-service-zipkin</module>
+    <module>micro-service-jpa</module>
+    <module>micro-boot-admin</module>
+    <module>micro-security-zuul</module>
+  </modules>
+</project>

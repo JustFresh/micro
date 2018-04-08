@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>SpringBoot SSH测试</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>修改用户信息</h1>
+		<div class="row">
+			<form id="addForm">
+				<input type="hidden" name="userId" id="userId" th:value="${userInfo.uId}" />
+				<div class="form-group">
+				    <label>用户名</label>
+				    <input type="text" class="form-control" id="username" placeholder="请输入用户名" th:value="${userInfo.username}" />
+				</div>
+				<div class="form-group">
+				    <label>密码</label>
+				    <input type="password" class="form-control" id="password" placeholder="请输入密码" th:value="${userInfo.password}" />
+				</div>
+				<div class="form-group">
+				    <label>昵称</label>
+				    <input type="text" class="form-control" id="nickname" placeholder="请输入昵称"  th:value="${userInfo.nickname}" />
+				</div>
+				<input type="button" class="btn btn-default" value="保存" onclick="update()"/>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/layer.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript">
+	var update = function(){
+		var userId = $("#userId").val();
+		var username = $("#username").val();
+		var password = $("#password").val();
+		var nickname = $("#nickname").val();
+		if(userId == null || userId == ""){
+			layer.alert("请选择需要修改的数据");
+			return;
+		}
+		if(username == null || username == ""){
+			layer.alert("请输入用户名");
+			return;
+		}
+		if(password == null || password == ""){
+			layer.alert("请输入密码");
+			return;
+		}
+		if(nickname == null || nickname == ""){
+			layer.alert("请输入昵称");
+			return;
+		}
+		$.ajax({
+			type: "post",
+			url: siteUrl + "user/update",
+			data: {
+				uId: userId,
+				username: username,
+				password: password,
+				nickname: nickname
+			},dataType: "json",
+			success: function(res){
+				if(res.success){
+					window.location.href = siteUrl + "user/list";
+				}else{
+					layer.alert(res.msg);
+				}
+			}
+		});
+	};
+	</script>
+</body>
+</html>

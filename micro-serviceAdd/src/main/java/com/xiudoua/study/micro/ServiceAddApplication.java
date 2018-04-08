@@ -1,0 +1,17 @@
+package com.xiudoua.study.micro;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
+
+@EnableDiscoveryClient
+@SpringBootApplication
+@ComponentScan({"com.xiudoua.study.micro.controller"})
+public class ServiceAddApplication {
+
+	public static void main(String[] args) {
+        SpringApplication.run(ServiceAddApplication.class, args);
+    }
+	
+}

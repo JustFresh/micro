@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>SpringBoot SSH测试</title>
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>用户详细信息</h1>
+		<p>用户名: <span th:text="*{userInfo.username}">...</span>.</p>
+		<p>密码: <span th:text="*{userInfo.password}">...</span>.</p>
+		<p>昵称: <span th:text="*{userInfo.nickname}">...</span>.</p>		
+		<a href="javascript: history.go(-1)" class="btn btn-danger">返回</a>
+	</div>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/layer.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript">
+	
+	</script>
+</body>
+</html>

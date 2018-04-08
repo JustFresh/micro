@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xiudoua.study</groupId>
+		<artifactId>micro</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.xiudoua.study</groupId>
+	<artifactId>micro-service-zipkin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>micro-service-zipkin Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	<!-- JustFresh 2018-04-04 Begin 声明项目配置文件编码格式 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+	<!-- JustFresh 2018-04-04 End 声明项目配置文件编码格式 -->
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- JustFresh 2018-04-04 Begin SpringBoot项目基础引用 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- JustFresh 2018-04-04 End SpringBoot项目基础引用 -->
+		
+		<!-- JustFresh 2018-04-04 Begin Eureka客户端服务所需引用 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.aspectj</groupId>
+					<artifactId>aspectjweaver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- JustFresh 2018-04-04 End Eureka客户端服务所需引用 -->
+		
+		<!-- JustFresh 2018-04-04 Begin 去除SpringBoot自带aspectjweaver并引入自定义aspectjweaver1.8.7（由于自带jar冲突） -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.8.7</version>
+		</dependency>
+		<!-- JustFresh 2018-04-04 End 去除SpringBoot自带aspectjweaver并引入自定义aspectjweaver1.8.7（由于自带jar冲突） -->
+		
+		<!-- JustFresh 2018-04-08 Begin 引入zipkin服务追踪所需jar -->
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-server</artifactId>
+			<version>1.26.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-ui</artifactId>
+			<version>1.26.1</version>
+		</dependency>
+		<!-- JustFresh 2018-04-08 End 引入zipkin服务追踪所需jar -->
+		
+		<!-- JustFresh 2018-04-04 Begin 引入打包发布（jar包或war包）所需sevlet支持 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- JustFresh 2018-04-04 End 引入打包发布（jar包或war包）所需sevlet支持 -->
+		
+	</dependencies>
+	
+	<!-- JustFresh 2018-04-04 Begin 声明SpringCloud 引用版本 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Camden.SR5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<!-- JustFresh 2018-04-04 End 声明SpringCloud 引用版本 -->
+	
+	<build>
+		<finalName>micro-service-zipkin</finalName>
+		<plugins>
+			<!-- JustFresh 2018-04-04 Begin Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- JustFresh 2018-04-04 Begin 解决中文乱码问题 -->
+			        <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>  
+			        <!-- JustFresh 2018-04-04 End 解决中文乱码问题 -->
+			    </configuration>
+			</plugin>
+			<!-- JustFresh 2018-04-04 End Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用 -->
+	   </plugins>
+	</build>
+	
+</project>

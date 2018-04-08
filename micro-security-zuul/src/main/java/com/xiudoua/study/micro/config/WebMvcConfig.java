@@ -1,0 +1,20 @@
+package com.xiudoua.study.micro.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@Configuration
+public class WebMvcConfig extends WebMvcConfigurerAdapter{
+
+	@Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/logout").setViewName("logout");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/user/index").setViewName("user/index");
+        registry.addViewController("/admin/index").setViewName("admin/index");
+        registry.addViewController("/401").setViewName("401");
+    }
+	
+}
