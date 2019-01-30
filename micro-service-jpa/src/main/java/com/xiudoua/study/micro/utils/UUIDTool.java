@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2018,TravelSky. 
- * All Rights Reserved.
- * TravelSky CONFIDENTIAL
- * 
- * Project Name:Airport-ssh
- * Package Name:com.hangxin.micro.airport.utils
- * File Name:UUIDTool.java
- * Date:2018年3月30日 下午5:59:08
- * 
- */
+
 package com.xiudoua.study.micro.utils;
 
 import java.util.UUID;
